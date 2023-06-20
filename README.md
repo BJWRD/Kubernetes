@@ -21,7 +21,11 @@ To explore the muliple Kubernetes deployments within this repository, follow the
 
 * [keycloak-kubernetes-authenticator](https://github.com/BJWRD/Kubernetes) `Keycloak Cluster deployed to Kubernetes.`
 
-* [helm-wordpress-example](https://github.com/BJWRD/Kubernetes) `The following project takes you through the steps required to deploy a Wordpress system via the Helm.` 
+* [helm-wordpress-example](https://github.com/BJWRD/Kubernetes) `The following project takes you through the steps required to deploy a Wordpress system via the Helm.`
+
+* [kubernetes-ingress-controller](https://github.com/BJWRD/Kubernetes) `Kubernetes deployment which routes traffic depending on the URL.`
+
+* [kubernetes-simple-webapp](https://github.com/BJWRD/Kubernetes) `A simple web application using K8s, Nginx, HTML and NodePort as a service.`
 
 Feel free to explore each deployment's directory for detailed instructions on how to set up and manage the Kubernetes resources. Each deployment comes with its own README file that provides step-by-step guidance.
 
