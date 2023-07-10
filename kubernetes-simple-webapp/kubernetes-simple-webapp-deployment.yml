@@ -1,0 +1,79 @@
+#service-definition.yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp-service
+  namespace: webapp-namespace
+spec:
+    type: NodePort
+    ports:
+    - port: 8080
+      targetPort: http-webapp-svc
+      protocol: TCP
+      nodePort: 30080
+    selector:
+      app: webapp
+      type: front-end
+---
+#deployment-definition.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment
+  namespace: webapp-namespace
+  labels:
+    app: webapp
+    type: front-end
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+     app: webapp
+     type: front-end
+  template:
+    metadata:
+      labels:
+        app: webapp
+        type: front-end
+    spec:
+     containers:
+     - name: nginx
+       image: nginx:latest
+       ports:
+       - containerPort: 8080
+         name: http-webapp-svc
+       volumeMounts:
+        - mountPath: /etc/nginx/
+          name: data-volume
+     volumes:
+      - name: data-volume
+        configMap:
+         name: nginx-config
+         items:
+          - key: nginx.conf
+            path: nginx.conf
+
+---
+#configmap-definition.yml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+  namespace: webapp-namespace
+  labels:
+    app: webapp
+    type: front-end
+data:
+  nginx.conf: '
+  events {
+  }
+  http {
+  server {
+    listen       8080;
+    location / {
+      return 200 "Hello world!";
+    }
+  }
+}
+'
+---
