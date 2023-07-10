@@ -1,0 +1,193 @@
+#kubernetes-ingress-controller.yml
+
+#service-definition.yml
+#football-service
+apiVersion: v1
+kind: Service
+metadata:
+  name: football-service
+  namespace: ingress-namespace
+spec:
+    type: NodePort
+    ports:
+    - port: 8080
+      targetPort: football-svc
+      protocol: TCP
+      nodePort: 30080
+    selector:
+      app: football-service
+      type: ingress-deployment
+---
+#boot-service
+apiVersion: v1
+kind: Service
+metadata:
+  name: boot-service
+  namespace: ingress-namespace
+spec:
+    type: NodePort
+    ports:
+    - port: 8080
+      targetPort: boot-svc
+      protocol: TCP
+      nodePort: 30081
+    selector:
+      app: boot-service
+      type: ingress-deployment2
+---
+#deployment-definition.yml
+#football-service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: football-service
+  namespace: ingress-namespace
+  labels:
+    app: football-service
+    type: ingress-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+     app: football-service
+     type: ingress-deployment
+  template:
+    metadata:
+      labels:
+        app: football-service
+        type: ingress-deployment
+    spec:
+     containers:
+     - name: nginx
+       image: nginx:latest
+       ports:
+       - containerPort: 8080
+         name: football-svc
+       volumeMounts:
+        - mountPath: /etc/nginx/
+          name: data-volume
+     volumes:
+      - name: data-volume
+        configMap:
+         name: ingress-configmap
+         items:
+          - key: nginx.conf
+            path: nginx.conf
+---
+#deployment-definition.yml
+#boot-service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: boot-service
+  namespace: ingress-namespace
+  labels:
+    app: boot-service
+    type: ingress-deployment2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+     app: boot-service
+     type: ingress-deployment2
+  template:
+    metadata:
+      labels:
+        app: boot-service
+        type: ingress-deployment2
+    spec:
+     containers:
+     - name: nginx
+       image: nginx:latest
+       ports:
+       - containerPort: 8080
+         name: boot-svc
+       volumeMounts:
+        - mountPath: /etc/nginx/
+          name: data-volume-2
+     volumes:
+      - name: data-volume-2
+        configMap:
+         name: ingress-configmap2
+         items:
+          - key: nginx.conf
+            path: nginx.conf
+---
+#configmap-definition.yml
+#football-service
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-configmap
+  namespace: ingress-namespace
+  labels:
+    app: football-service
+    type: ingress-deployment
+data:
+  nginx.conf: '
+  events {
+  }
+  http {
+  server {
+    listen       8080;
+    location / {
+      return 200 "Hello World! This is the Soccer-World Footballs Page!";
+    }
+  }
+}
+'
+---
+#configmap-definition.yml
+#boot-service
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-configmap2
+  namespace: ingress-namespace
+  labels:
+    app: boot-service
+    type: ingress-deployment2
+data:
+  nginx.conf: '
+  events {
+  }
+  http {
+  server {
+    listen       8080;
+    location / {
+      return 200 "Hello World! This is the Soccer-World Boots Page!";
+    }
+  }
+}
+'
+---
+#ingress-controller-definition.yml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-config
+  namespace: ingress-namespace
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+  labels:
+    app: nginx-webapp
+    type: ingress
+spec:
+  rules:
+    - host: soccer-world
+      http:
+        paths:
+          - path: /footballs
+            pathType: Prefix
+            backend:
+              service:
+                name: football-service
+                port:
+                  number: 8080
+          - path: /boots
+            pathType: Prefix
+            backend:
+              service:
+                name: boot-service
+                port:
+                  number: 8080

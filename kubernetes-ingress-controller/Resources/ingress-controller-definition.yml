@@ -1,0 +1,30 @@
+#ingress-controller-definition.yml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-config
+  namespace: ingress-namespace
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+  labels:
+    app: nginx-webapp
+    type: ingress
+spec:
+  rules:
+    - host: soccer-world
+      http:
+        paths:
+          - path: /footballs
+            pathType: Prefix
+            backend:
+              service:
+                name: football-service
+                port:
+                  number: 8080
+          - path: /boots
+            pathType: Prefix
+            backend:
+              service:
+                name: boot-service
+                port:
+                  number: 8080

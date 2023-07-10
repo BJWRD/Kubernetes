@@ -1,0 +1,47 @@
+#configmap-definition.yml
+#football-service
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-configmap
+  namespace: ingress-namespace
+  labels:
+    app: football-service
+    type: ingress-deployment
+data:
+  nginx.conf: '
+  events {
+  }
+  http {
+  server {
+    listen       8080;
+    location / {
+      return 200 "Hello World! This is the Soccer-World Footballs Page!";
+    }
+  }
+}
+'
+---
+#configmap-definition.yml
+#boot-service
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-configmap2
+  namespace: ingress-namespace
+  labels:
+    app: boot-service
+    type: ingress-deployment2
+data:
+  nginx.conf: '
+  events {
+  }
+  http {
+  server {
+    listen       8080;
+    location / {
+      return 200 "Hello World! This is the Soccer-World Boots Page!";
+    }
+  }
+}
+'
