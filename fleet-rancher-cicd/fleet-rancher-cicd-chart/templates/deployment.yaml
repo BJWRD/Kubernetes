@@ -1,0 +1,37 @@
+#deployment-definition.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name }}
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app: {{ .Values.namespace.app }}
+    type: {{ .Values.namespace.type }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+     app: {{ .Values.namespace.app }}
+     type: {{ .Values.namespace.type }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.namespace.app }}
+        type: {{ .Values.namespace.type }}
+    spec:
+     containers:
+     - name: {{ .Values.deployment.containerName }}
+       image: {{ .Values.deployment.image }}
+       ports:
+       - containerPort: {{ .Values.deployment.containerPort }}
+         name: {{ .Values.service.targetPort }}
+       volumeMounts:
+        - mountPath: {{ .Values.deployment.mountPath }}
+          name: {{ .Values.deployment.mountName }}
+     volumes:
+      - name: {{ .Values.deployment.volumeName }}
+        configMap:
+         name: {{ .Values.configmap.name }}
+         items:
+          - key: {{ .Values.configmp.item }}
+            path: {{ .Values.configmap.item }}

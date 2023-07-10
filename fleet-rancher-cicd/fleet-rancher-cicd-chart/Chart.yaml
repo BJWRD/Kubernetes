@@ -1,0 +1,9 @@
+apiVersion: v2
+name: fleet-rancher-cicd-chart
+description: A Helm chart for Kubernetes Web application
+type: application
+version: 0.1.0
+appVersion: "1.16.0"
+keywords:
+    - webapp
+    - deployment

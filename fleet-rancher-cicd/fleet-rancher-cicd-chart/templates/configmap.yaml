@@ -1,0 +1,11 @@
+#configmap-definition.yml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configmap.name }}
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app: {{ .Values.namespace.app }}
+    type: {{ .Values.namespace.type }}
+data:
+  nginx.conf: {{ .Values.configmap.nginxConfig }}

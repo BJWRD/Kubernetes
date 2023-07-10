@@ -1,0 +1,43 @@
+# Default values for fleet-rancher-cicd-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace:
+  name: fleet-rancher-cicd
+  app: webapp
+  type: front-end
+
+deployment:
+  name: webapp-deployment
+  replicas: 3
+  containerName: nginx
+  image: nginx:latest
+  containerPort: 8080
+  mountPath: /etc/nginx
+  mountName: data-volume
+  volumeName: data-volume
+  item: nginx.conf
+
+service:
+  name: webapp-service
+  type: NodePort
+  port: 8080
+  targetPort: http-webapp-svc
+  protocol: TCP
+  nodePort: 30080
+
+configmap:
+  name: nginx-config
+  nginxConfig: '
+  events {
+  }
+  http {
+  server {
+    listen       8080;
+    location / {
+      return 200 "Hello world!";
+      return 200 "";
+    }
+  }
+}
+'
