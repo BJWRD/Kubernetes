@@ -13,19 +13,21 @@ To explore the muliple Kubernetes deployments within this repository, follow the
   
 #### 3. Choose one of the available deployments from the list below and follow the instructions provided in their respective directories:
 
-* [kubeStack-deployment](https://github.com/BJWRD/Kubernetes): `Multi-App deployment onto a Kubernetes Clusterm, utilising Helm Charts.`
+* [kubeStack-deployment](https://github.com/BJWRD/Kubernetes/kubeStack-deployment): `Multi-App deployment onto a Kubernetes Cluster, utilising Helm Charts.`
 
-* [kubernetes-docker-python-flask](https://github.com/BJWRD/Kubernetes): `A Python Flask web application using K8s, Docker, Python Flask and NodePort as a service.`
+* [kubernetes-docker-python-flask](https://github.com/BJWRD/Kubernetes/kubernetes-docker-python-flask): `A Python Flask web application using K8s, Docker, Python Flask and NodePort as a service.`
 
-* [rancher-kubernetes-cluster](https://github.com/BJWRD/Kubernetes): `The following project includes Rancher installation on a Kubernetes Cluster.`
+* [rancher-kubernetes-cluster](https://github.com/BJWRD/Kubernetes/rancher-kubernetes-cluster): `The following project includes Rancher installation on a Kubernetes Cluster.`
 
-* [keycloak-kubernetes-authenticator](https://github.com/BJWRD/Kubernetes) `Keycloak Cluster deployed to Kubernetes.`
+* [keycloak-kubernetes-authenticator](https://github.com/BJWRD/Kubernetes/keycloak-kubernetes-authenticator) `Keycloak Cluster deployed to Kubernetes.`
 
-* [helm-wordpress-example](https://github.com/BJWRD/Kubernetes) `The following project takes you through the steps required to deploy a Wordpress system via the Helm.`
+* [helm-wordpress-example](https://github.com/BJWRD/Kubernetes/helm-wordpress-example) `The following project takes you through the steps required to deploy a Wordpress system via the Helm.`
 
-* [kubernetes-ingress-controller](https://github.com/BJWRD/Kubernetes) `Kubernetes deployment which routes traffic depending on the URL.`
+* [kubernetes-ingress-controller](https://github.com/BJWRD/Kubernetes/kubernetes-ingress-controller) `Kubernetes deployment which routes traffic depending on the URL.`
 
-* [kubernetes-simple-webapp](https://github.com/BJWRD/Kubernetes) `A simple web application using K8s, Nginx, HTML and NodePort as a service.`
+* [kubernetes-simple-webapp](https://github.com/BJWRD/Kubernetes/kubernetes-simple-webapp) `A simple web application using K8s, Nginx, HTML and NodePort as a service.`
+
+* [fleet-rancher-cicd](https://github.com/BJWRD/Kubernetes/fleet-rancher-cicd) `Web application deployment via a Fleet GitOps CICD solution.`
 
 Feel free to explore each deployment's directory for detailed instructions on how to set up and manage the Kubernetes resources. Each deployment comes with its own README file that provides step-by-step guidance.
 
