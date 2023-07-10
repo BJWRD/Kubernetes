@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.databaseService.serviceName }}
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    tier: {{ .Values.databasePod.tier }}
+spec:
+  type: {{ .Values.databaseService.type }}
+  ports:
+    - port: 3306
+      targetPort: 3306
+  selector:
+    tier: {{ .Values.databasePod.tier }}

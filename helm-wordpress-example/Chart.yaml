@@ -1,0 +1,8 @@
+apiVersion: v2
+name: Wordpress
+decription: Helm Chart setup for Wordpress instance
+version: 0.1
+appVersion: 0.1
+keywords:
+  - wordpress
+  - database

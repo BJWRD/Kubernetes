@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ .Values.databasePod.podName }}
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    tier: {{ .Values.databasePod.tier }}
+spec:
+  containers:
+    - name: {{ .Values.databasePod.containerName }}
+      image: {{ .Values.databasePod.image }}:{{ .Values.databasePod.tag }}
+      imagePullPolicy: {{ .Values.pullPolicy }}
+      ports:
+        - containerPort: 3306
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.secret.secretName }}
+              key: MYSQL_ROOT_PASSWORD
+        - name: MYSQL_DATABASE
+          value: {{ .Values.databasePod.database }}
+  restartPolicy: {{ .Values.restartPolicy }}
