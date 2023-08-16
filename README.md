@@ -13,7 +13,7 @@ To explore the muliple Kubernetes deployments within this repository, follow the
   
 #### 3. Choose one of the available deployments from the list below and follow the instructions provided in their respective directories:
 
-* [kubeStack-deployment](https://github.com/BJWRD/Kubernetes/kubeStack-deployment): `Multi-App deployment onto a Kubernetes Cluster, utilising Helm Charts.`
+* [cert-manager-deployment](https://github.com/BJWRD/Kubernetes/cert-manager-deployment): `Cert-Manager deployment and configuration on a existing K8s Cluster/Resources.`
 
 * [kubernetes-docker-python-flask](https://github.com/BJWRD/Kubernetes/kubernetes-docker-python-flask): `A Python Flask web application using K8s, Docker, Python Flask and NodePort as a service.`
 
