@@ -13,6 +13,8 @@ To explore the muliple Kubernetes deployments within this repository, follow the
   
 #### 3. Choose one of the available deployments from the list below and follow the instructions provided in their respective directories:
 
+* [fleet-rancher-gitops](https://github.com/BJWRD/Kubernetes/fleet-rancher-gitops) `Application deployment via a Rancher Fleet GitOps solution.`
+
 * [cert-manager-deployment](https://github.com/BJWRD/Kubernetes/cert-manager-deployment): `Cert-Manager deployment and configuration on a existing K8s Cluster/Resources.`
 
 * [kubernetes-docker-python-flask](https://github.com/BJWRD/Kubernetes/kubernetes-docker-python-flask): `A Python Flask web application using K8s, Docker, Python Flask and NodePort as a service.`
@@ -26,8 +28,6 @@ To explore the muliple Kubernetes deployments within this repository, follow the
 * [kubernetes-ingress-controller](https://github.com/BJWRD/Kubernetes/kubernetes-ingress-controller) `Kubernetes deployment which routes traffic depending on the URL.`
 
 * [kubernetes-simple-webapp](https://github.com/BJWRD/Kubernetes/kubernetes-simple-webapp) `A simple web application using K8s, Nginx, HTML and NodePort as a service.`
-
-* [fleet-rancher-cicd](https://github.com/BJWRD/Kubernetes/fleet-rancher-cicd) `Web application deployment via a Fleet GitOps CICD solution.`
 
 Feel free to explore each deployment's directory for detailed instructions on how to set up and manage the Kubernetes resources. Each deployment comes with its own README file that provides step-by-step guidance.
 
