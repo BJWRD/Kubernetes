@@ -1,0 +1,30 @@
+values:
+  serviceAccount:
+    annotations:
+      eks.amazonaws.com/role-arn: "arn:aws:iam::ID:role/ENTER-ROLE-NAME-HERE"
+  loki:
+    auth_enabled: false
+    storage:
+      type: s3
+      s3:
+        endpoint: https://s3.eu-west-2.amazonaws.com/
+        region: eu-west-2a
+        s3ForcePathStyle: false
+        insecure: false
+      bucketNames:
+        chunks: ENTER-BUCKET-NAME
+        ruler: ENTER-BUCKET-NAME
+        admin: ENTER-BUCKET-NAME
+  ingress:
+    enabled: true
+    hosts:
+      - loki.bjwrd.com
+  schema_config:
+    configs:
+      - from: 2023-04-13
+        store: boltdb-shipper
+        object_store: s3
+        schema: v12
+        index:
+          prefix: index_
+          period: 24h
