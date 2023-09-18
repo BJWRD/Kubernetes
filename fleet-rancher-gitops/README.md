@@ -7,7 +7,6 @@ The following project includes the deployment of a web application via a Fleet G
 * An AWS Account with an IAM user capable of creating resources – `AdminstratorAccess`
 * A locally configured AWS profile for the above IAM user
 * Terraform installation - [steps](https://learn.hashicorp.com/tutorials/terraform/install-cli)
-* AWS EC2 key pair - [steps](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
 * Environment Variables for AWS CLI - [steps](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
 
 **NOTE:** Please refer to the following rancher-terraform-eks-cluster GitHub repo with instructions with how to provide the EKS Cluster via Terraform - [steps](https://github.com/BJWRD/Terraform/edit/main/rancher-terraform-eks-cluster)
