@@ -16,7 +16,7 @@ The following steps detail the end-to-end Cert-Manager deployment/configuration 
     
 ### Configure Cert-Manager and the required certificate resources
 #### 1.	Clone the repo
-    git clone https://github.com/BJWRD/Kubernetes/cert-manager-deployment && cd cert-manager-deployment
+    git clone https://github.com/BJWRD/Kubernetes && cd cert-manager-deployment
 
 #### 2. Creating the ca.crt & ca.key files
 
