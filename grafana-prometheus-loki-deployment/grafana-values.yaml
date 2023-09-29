@@ -1,7 +1,7 @@
 ingress:
   enabled: true
   hosts:
-    - grafana.bjwrd.com
+    - grafana.test.com
 persistence:
   type: pvc
   enabled: true
