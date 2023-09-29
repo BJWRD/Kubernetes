@@ -94,6 +94,7 @@ Access your S3 bucket and from there you will see newly created files/directorys
 
 ## Useful links -
 
+* https://grafana.com/oss/loki/?utm_source=grafana_add_ds
 * https://github.com/grafana/loki/blob/main/production/helm/loki/values.yaml
 * https://github.com/grafana/helm-charts/blob/main/charts/promtail/values.yaml
 * https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
