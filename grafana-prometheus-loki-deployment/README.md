@@ -8,6 +8,7 @@ The following project includes the provisioning steps of a multi-app security mo
 * Kubectl Installation - [steps](https://helm.sh/docs/intro/install/)
 * Helm Installation - [steps](https://pwittrock.github.io/docs/tasks/tools/install-kubectl/)
 * Kubeconfig Setup/Configured
+* A created K8s secret resource containing AWS Credentials entered within.
 
 ## Switch to the EKS Cluster
 Using the AWS CLI, ensure you select the EKS Cluster which you plan to deploy the Helm Charts to -
@@ -23,6 +24,49 @@ Using the AWS CLI, ensure you select the EKS Cluster which you plan to deploy th
     helm repo add grafana https://grafana.github.io/helm-charts
 
     helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
+## Kubernetes Secret Creation
+As mentioned within the Pre-Requisites section, a Kubernetes Secret resource containing AWS Credentials (AWS Access Key & AWS Secret Key) are required for the Loki Helm Chart to then mount this secret to it's deployment. 
+
+By implementing this secret creation and it's subsequent mounting to the Loki deployment, it ensures that the Loki logs are imported within the assigned AWS S3 bucket (referenced within the Loki Helm Chart values).
+
+The following steps are required to achieve this -
+
+1. Create the secret .yaml file -
+   
+       vi loki-secret.yaml
+   
+2. Update the secret .yaml file with the secret parameters
+
+       apiVersion: v1
+       kind: Secret
+       metadata:
+          name: loki-secret
+          namespace: loki
+       type: Opaque
+       data:
+          AWS_ACCESS_KEY_ID: 
+          AWS_SECRET_ACCESS_KEY 
+
+3. Encode your AWS Access Key and AWS Secret Key using base64
+
+       echo -n 'Alfjase&99dhBJSIAIF/sdfjiaef' | base64
+
+4. Copy the output values of the echo commands and append them to each respective field within the loki-secret-keys.yaml file
+
+          apiVersion: v1
+       kind: Secret
+       metadata:
+          name: loki-secret
+          namespace: loki
+       type: Opaque
+       data:
+          AWS_ACCESS_KEY_ID: Enter here
+          AWS_SECRET_ACCESS_KEY Enter here
+
+5. Finally, create the secret resource so it's ready prior to the Loki Helm Chart deployment -
+   
+        kubectl create -f loki-secret.yaml
 
 ## Helm Installation's
 
