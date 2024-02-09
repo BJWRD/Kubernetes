@@ -1,4 +1,4 @@
-# airflow-sparks-s3
+# airflow-spark-s3
 The following project includes the provisioning steps of a Airflow/Spark/S3 deployment. It will consist of the Helm Charts/DAGS/Dockefiles/Python Scripts.
 
 ## Prerequisites
@@ -8,6 +8,9 @@ The following project includes the provisioning steps of a Airflow/Spark/S3 depl
 * Kubectl Installation - [steps](https://helm.sh/docs/intro/install/)
 * Helm Installation - [steps](https://pwittrock.github.io/docs/tasks/tools/install-kubectl/)
 * Kubeconfig Setup/Configured
+* S3 Buckets x2 - (Airflow DAG logging & CSV file updates)
+* AWS CodeCommit Repository
+* Elastic Container Registery to host your Docker Image for the Airflow Chart to then use for Airflow Deployment.
 
 ## Switch to the EKS Cluster
 Using the AWS CLI, ensure you select the EKS Cluster which you plan to deploy the Helm Charts to -
@@ -49,5 +52,5 @@ TBC
 
 
 ## Note: 
-If you prefer to conduct the following deployment in a more automated way, this can be done so using my `airflow-spark-eks-cluster` terraform repository - TBC
+If you prefer to conduct the following deployment in a more automated way using IAC, this can be done so by using the following repository - [airflow-spark-eks-cluster](https://github.com/BJWRD/Terraform/)
   
